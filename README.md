@@ -19,9 +19,10 @@
 - **Shaun**
 
 **Bonus**
-1. Rewrite the algorithm with a cap of three courses per semester: find the fastest graduation path - **Shaun**
+1. Rewrite the algorithm with a cap of three courses per semester: find the fastest graduation path
 2. Build an interactive Web/GUI application to display the algorithm
-3. Rewrite the algorithm to fill out the CSC advising sheet: find the fastest graduation path(least amount of semesters
+3. Rewrite the algorithm to fill out the CSC advising sheet: find the fastest graduation path (least amount of semesters
+)
 
 
 
