@@ -18,11 +18,10 @@ enum Offerings {
 
 class Node {
     private String course;
-    private Node prereq = null;
+    private ArrayList<Node> prereq = null;
 
-    public Node(String course, Node prereq) {
+    public Node(String course) {
         this.course = course;
-        this.prereq = prereq;
     }
     public Node(String course) {
         this.course = course;
@@ -54,9 +53,17 @@ class URLParser {
 
     private void parseTable() {
         for(Element row: table.select("tr")) {
-            Elements col = row.select("td");
-            System.out.println(col.select("p"));
-            //classList.add(new Node(col.get(0).select("p")))
+            for(Element col: row.select("td")) {
+                if(col.attr("data-label").equals("Course Number")) {
+                    Elements link = col.select("a");
+                    String label = link.text();
+                    System.out.println(label);
+                }else if(col.attr("data-label").equals("Prerequisites")) {
+                    System.out.println(col.text());
+                    //System.out.println(col.);
+                }
+
+            }
         }
     }
 
