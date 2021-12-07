@@ -1,0 +1,9 @@
+# ide file
+/shelf/
+/.idea/workspace.xml
+*.xml
+*.iml
+
+# compiled files
+*.class
+*.o
