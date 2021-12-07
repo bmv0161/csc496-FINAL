@@ -23,14 +23,11 @@ class Node {
     public Node(String course) {
         this.course = course;
     }
-    public Node(String course) {
-        this.course = course;
-    }
 
     public String getCourse() {
         return this.course;
     }
-    public Node getPrereq() {
+    public ArrayList<Node> getPrereq() {
         return this.prereq;
     }
 }
