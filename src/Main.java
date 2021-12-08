@@ -8,9 +8,10 @@ public class Main {
 
         printGraph(graph);
 
+        //printGraph(new Graph(graph));
+
         new ClassScheduler(graph).planGraduation();
 
-        //printGraph(graph);
     }
 
     public static void printGraph(Graph graph) {
@@ -20,6 +21,14 @@ public class Main {
         System.out.println();
     }
 
+    public static void createGraph(Graph graph) {
+        graph.addNode("MAT 151", "Introduction to Discrete Mathematics");
+        graph.addNode("MAT 161", "Calculus I");
+        graph.addNode("CSC 141", "Computer Science I", new String[]{"MAT 151"});
+        graph.addNode("CSC 142", "Computer Science II", new String[]{"MAT 151", "MAT 161", "CSC 141"});
+        graph.addNode("CSC 220", "Foundations of Computer Science", new String[]{"MAT 161", "CSC 142"});
+    }
+/*
     public static void createGraph(Graph graph) {
         graph.addNode("MAT 151", "Introduction to Discrete Mathematics");
         graph.addNode("MAT 161", "Calculus I");
@@ -55,4 +64,6 @@ public class Main {
         graph.addNode("CSC 497", "Topics in Computer Security", new ArrayList<Node>(Arrays.asList(graph.nodes.get(7))));
         graph.addNode("CSC 499", "Independent Study in Computer Science", new ArrayList<Node>(Arrays.asList(graph.nodes.get(7))));
     }
+
+ */
 }

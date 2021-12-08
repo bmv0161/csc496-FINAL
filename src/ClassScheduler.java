@@ -35,7 +35,7 @@ class TopologySorter {
 
     public void sort() {
         for(Node x: graph.getCourses()) {
-            if(x.getPrereqs().isEmpty()) {
+            if(x.hasPrereqs()) {
                 //System.out.println(x.getCourse());
                 semester.add(x);
             }
