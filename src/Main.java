@@ -39,8 +39,12 @@ public class Main {
         graph.addNode("CSC 497", "Topics in Computer Security", new ArrayList<Node>(Arrays.asList(graph.nodes.get(7))));
         graph.addNode("CSC 499", "Independent Study in Computer Science", new ArrayList<Node>(Arrays.asList(graph.nodes.get(7))));
 
-        for (Node x: graph.nodes) {
+        new ClassScheduler(graph).planSemester();
+
+        /*
+        for (Node x: graph.getCourses()) {
             System.out.println(x.getCourse() + " -- " + x.getName() + "\n\t" + x.getPrereqs());
         }
+         */
     }
 }
