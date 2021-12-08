@@ -9,14 +9,19 @@
 3. Create algorithm for topology
 4. Bonus points
 
-**Program**
+**File Structure**
 1. Graph.java: reads raw data and stores directed graph data structure - **Devin**
 2. ClassScheduler.java: performs topology sort and outputs four year plan - **Brian**
 
-**Video**
-- code demo
-- explain how algorithm works: step by step
-- **Shaun**
+**Roles**
+Devin
+- Graph.java
+Brian
+- ClassScheduler.java
+Shaun
+- Video
+Shared
+- Bonuses
 
 **Bonus**
 1. Rewrite the algorithm with a cap of three courses per semester: find the fastest graduation path
