@@ -1,14 +1,13 @@
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class Graph {
     protected ArrayList<Node> nodes = null;
 
 	public Graph() {
-		nodes = new ArrayList<Node>();
+		nodes = new ArrayList<>();
 	}
-	public Graph(Graph graph) {
-		this.nodes = new ArrayList<Node>(graph.getCourses());
-	}
+
 
 	public void addNode(String number, String name) {
 		nodes.add(new Node(number, name));
@@ -19,13 +18,12 @@ public class Graph {
 
 	public void removeNode(Node node) {
 		for(Node x: nodes) {
-			for(Node y: x.getPrereqs()) {
-				if(y.getCourse().equals(node.getCourse())) {
-					//x.removePrereq(y);
-				}
-			}
+			x.getPrereqs().remove(node);
 		}
 		nodes.remove(node);
+	}
+	public boolean isEmpty() {
+		return nodes.isEmpty();
 	}
 
 	public ArrayList<Node> getCourses() {

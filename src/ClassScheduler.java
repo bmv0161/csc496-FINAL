@@ -7,9 +7,18 @@ public class ClassScheduler {
         this.graph = graph;
     }
 
-    public void planSemester() {
+    public void planGraduation() {
+        int i = 1;
+        while(!graph.isEmpty()) {
+            System.out.printf("Semester %d: %s\n", i, planSemester());
+            i++;
+        }
+    }
+
+    public String planSemester() {
         TopologySorter sort = new TopologySorter(graph);
-        System.out.println(sort.getSemesterPlan());
+        return sort.getSemesterPlan().toString();
+        //System.out.println("---\t" + sort.getSemesterPlan());
     }
 }
 
@@ -25,12 +34,14 @@ class TopologySorter {
     }
 
     public void sort() {
-        for(Node x: new ArrayList<Node>(graph.getCourses())) {
+        for(Node x: graph.getCourses()) {
             if(x.getPrereqs().isEmpty()) {
                 //System.out.println(x.getCourse());
                 semester.add(x);
-                graph.removeNode(x);
             }
+        }
+        for(Node x: semester) {
+            graph.removeNode(x);
         }
     }
 

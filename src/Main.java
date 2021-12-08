@@ -4,7 +4,23 @@ import java.util.Arrays;
 public class Main {
     public static void main(String args[]) {
         Graph graph = new Graph();
+        createGraph(graph);
 
+        printGraph(graph);
+
+        new ClassScheduler(graph).planGraduation();
+
+        //printGraph(graph);
+    }
+
+    public static void printGraph(Graph graph) {
+        for (Node x: graph.getCourses()) {
+            System.out.println(x.getCourse() + " --\t" + x.getPrereqs());
+        }
+        System.out.println();
+    }
+
+    public static void createGraph(Graph graph) {
         graph.addNode("MAT 151", "Introduction to Discrete Mathematics");
         graph.addNode("MAT 161", "Calculus I");
         graph.addNode("CSC 141", "Computer Science I");
@@ -17,7 +33,7 @@ public class Main {
         graph.addNode("CSC 301", "Computer Security & Ethics");
         graph.addNode("CSC 335", "Data Communications and Networking I", new ArrayList<Node>(Arrays.asList(graph.nodes.get(7), graph.nodes.get(8))));
         graph.addNode("CSC 302", "Computer Security", new ArrayList<Node>(Arrays.asList(graph.nodes.get(3), graph.nodes.get(10))));
-        graph.addNode("CSC 317", "Introduction to Digital Image Processing", new ArrayList<Node>(Arrays.asList(graph.nodes.get(3), graph.nodes.get(0), graph.nodes.get(1))));
+        graph.addNode("CSC 317", "Introduction to Digital Image Processing", new ArrayList<Node>(Arrays.asList(graph.nodes.get(7), graph.nodes.get(0), graph.nodes.get(1))));
         graph.addNode("CSC 321", "Database Management Systems", new ArrayList<Node>(Arrays.asList(graph.nodes.get(7))));
         graph.addNode("CSC 331", "Operating Systems", new ArrayList<Node>(Arrays.asList(graph.nodes.get(3), graph.nodes.get(6), graph.nodes.get(7))));
         graph.addNode("CSC 336", "Data Communications and Networking II", new ArrayList<Node>(Arrays.asList(graph.nodes.get(10))));
@@ -38,13 +54,5 @@ public class Main {
         graph.addNode("CSC 496", "Topics in Complex Systems", new ArrayList<Node>(Arrays.asList(graph.nodes.get(7))));
         graph.addNode("CSC 497", "Topics in Computer Security", new ArrayList<Node>(Arrays.asList(graph.nodes.get(7))));
         graph.addNode("CSC 499", "Independent Study in Computer Science", new ArrayList<Node>(Arrays.asList(graph.nodes.get(7))));
-
-        new ClassScheduler(graph).planSemester();
-
-        /*
-        for (Node x: graph.getCourses()) {
-            System.out.println(x.getCourse() + " -- " + x.getName() + "\n\t" + x.getPrereqs());
-        }
-         */
     }
 }
