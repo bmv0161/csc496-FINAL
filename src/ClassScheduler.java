@@ -23,9 +23,8 @@ public class ClassScheduler {
 }
 
 class TopologySorter {
-    Graph graph = null;
-    Graph newGraph = null;
-    ArrayList<Node> semester = null;
+    Graph graph;
+    ArrayList<Node> semester;
 
     public TopologySorter(Graph graph) {
         this.graph = graph;
@@ -35,8 +34,7 @@ class TopologySorter {
 
     public void sort() {
         for(Node x: graph.getCourses()) {
-            if(x.hasPrereqs()) {
-                //System.out.println(x.getCourse());
+            if(!x.hasPrereqs()) {
                 semester.add(x);
             }
         }

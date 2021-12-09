@@ -7,11 +7,9 @@ public class Main {
         createGraph(graph);
 
         printGraph(graph);
+        new ClassScheduler(new Graph(graph)).planGraduation();
 
-        //printGraph(new Graph(graph));
-
-        new ClassScheduler(graph).planGraduation();
-
+        //printGraph(graph);
     }
 
     public static void printGraph(Graph graph) {
@@ -29,7 +27,7 @@ public class Main {
         graph.addNode("CSC 220", "Foundations of Computer Science", new String[]{"MAT 161", "CSC 142"});
     }
 /*
-    public static void createGraph(Graph graph) {
+    public static void createGraph2(Graph graph) {
         graph.addNode("MAT 151", "Introduction to Discrete Mathematics");
         graph.addNode("MAT 161", "Calculus I");
         graph.addNode("CSC 141", "Computer Science I");
@@ -64,6 +62,5 @@ public class Main {
         graph.addNode("CSC 497", "Topics in Computer Security", new ArrayList<Node>(Arrays.asList(graph.nodes.get(7))));
         graph.addNode("CSC 499", "Independent Study in Computer Science", new ArrayList<Node>(Arrays.asList(graph.nodes.get(7))));
     }
-
- */
+    */
 }

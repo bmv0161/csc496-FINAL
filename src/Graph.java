@@ -9,16 +9,18 @@ public class Graph {
 		nodes = new ArrayList<>();
 		nodeHash = new Hashtable<>();
 	}
-	/*
 	public Graph(Graph graph) {
 		nodes = new ArrayList<>();
+		nodeHash = new Hashtable<>();
+
 		for(Node x: graph.getCourses()) {
-			nodes.add(new Node(x));
+			if(x.hasPrereqs()) {
+				this.addNode(x.getCourse(), x.getName(), x.getPrereqsString());
+			} else {
+				this.addNode(x.getCourse(), x.getName());
+			}
 		}
-
 	}
-	 */
-
 
 	public void addNode(String number, String name) {
 		Node node = new Node(number, name);
@@ -31,7 +33,6 @@ public class Graph {
 	}
 	 */
 
-	//
 	public void addNode(String number, String name, String[] prereqs) {
 		Node node = new Node(number, name);
 		for(String x: prereqs) {
@@ -75,18 +76,6 @@ class Node {
 		this.name = name;
 		this.prereqs = prereqs;
 	}
-	/*
-	public Node(Node node) {
-		this.number = node.getCourse();
-		this.name = node.getName();
-		this.prereqs = new ArrayList<>();
-		if(node.hasPrereqs()) {
-			for (Node x : node.getPrereqs()) {
-				this.prereqs.add(new Node(x));
-			}
-		}
-	}
-	 */
 
 	public String getCourse() {
 		return this.number;
@@ -101,11 +90,21 @@ class Node {
 	public void removePrereq(Node node) {
 		prereqs.remove(node);
 	}
+	public String[] getPrereqsString() {
+		String[] strArray = new String[prereqs.size()];
+		if(this.hasPrereqs()) {
+			for(int i = 0; i < strArray.length; i++) {
+				strArray[i] = prereqs.get(i).getCourse();
+			}
+		}
+
+		return strArray;
+	}
 	public ArrayList<Node> getPrereqs() {
 		return prereqs;
 	}
 	public boolean hasPrereqs() {
-		return prereqs.isEmpty();
+		return !prereqs.isEmpty();
 	}
 
 	public String toString() {
