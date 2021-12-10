@@ -14,12 +14,16 @@
 2. ClassScheduler.java: performs topology sort and outputs four year plan - **Brian**
 
 **Roles**
+
 Devin
 - Graph.java
+
 Brian
 - ClassScheduler.java
+
 Shaun
 - Video
+
 Shared
 - Bonuses
 
