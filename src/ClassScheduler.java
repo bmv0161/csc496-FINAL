@@ -1,34 +1,30 @@
 import java.util.ArrayList;
 
 public class ClassScheduler {
-    private Graph graph = null;
+    private Graph graph;
 
     public ClassScheduler(Graph graph) {
         this.graph = graph;
     }
 
     public void planGraduation() {
-        int i = 1;
-        while(!graph.isEmpty()) {
+        for(int i = 1; !graph.isEmpty(); i++ ) {
             System.out.printf("Semester %d: %s\n", i, planSemester());
-            i++;
         }
     }
 
     public String planSemester() {
-        TopologySorter sort = new TopologySorter(graph);
-        return sort.getSemesterPlan().toString();
-        //System.out.println("---\t" + sort.getSemesterPlan());
+        return new SemesterPlanner(graph).toString();
     }
 }
 
-class TopologySorter {
+class SemesterPlanner {
     Graph graph;
     ArrayList<Node> semester;
 
-    public TopologySorter(Graph graph) {
+    public SemesterPlanner(Graph graph) {
         this.graph = graph;
-        this.semester = new ArrayList<Node>();
+        this.semester = new ArrayList<>();
         sort();
     }
 
@@ -43,7 +39,11 @@ class TopologySorter {
         }
     }
 
-    public ArrayList<Node> getSemesterPlan() {
+    public ArrayList<Node> getSemester() {
         return semester;
+    }
+
+    public String toString() {
+        return semester.toString();
     }
 }

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+
 import java.util.Arrays;
 
 public class Main {
@@ -6,25 +7,16 @@ public class Main {
         Graph graph = new Graph();
         createGraph(graph);
 
-        printGraph(graph);
         new ClassScheduler(new Graph(graph)).planGraduation();
-
-        //printGraph(graph);
-    }
-
-    public static void printGraph(Graph graph) {
-        for (Node x: graph.getCourses()) {
-            System.out.println(x.getCourse() + " --\t" + x.getPrereqs());
-        }
-        System.out.println();
     }
 
     public static void createGraph(Graph graph) {
+        graph.addNode("CSC 142", "Computer Science II", new ArrayList<String>(Arrays.asList("MAT 161", "CSC 141")));
+        graph.addNode("MAT 161", "Calculus I", new ArrayList<String>(Arrays.asList("MAT 151")));
+        graph.addNode("CSC 141", "Computer Science I", new ArrayList<String>(Arrays.asList("MAT 151", "MAT 161")));
+        graph.addNode("CSC 220", "Foundations of Computer Science", new ArrayList<String>(Arrays.asList("CSC 142", "CSC 990")));
         graph.addNode("MAT 151", "Introduction to Discrete Mathematics");
-        graph.addNode("MAT 161", "Calculus I");
-        graph.addNode("CSC 141", "Computer Science I", new String[]{"MAT 151"});
-        graph.addNode("CSC 142", "Computer Science II", new String[]{"MAT 151", "MAT 161", "CSC 141"});
-        graph.addNode("CSC 220", "Foundations of Computer Science", new String[]{"MAT 161", "CSC 142"});
+        graph.addNode("CSC 990", "heck music", new ArrayList<String>(Arrays.asList("CSC 141", "CSC 299")));
     }
 /*
     public static void createGraph2(Graph graph) {
