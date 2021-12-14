@@ -20,7 +20,7 @@ None
 Spring, Summer, Fall
 CSC 142
 Computer Science II
-CSC 141
+CSC 141 
 Spring, Summer, Fall
 CSC 220
 Foundations of Computer Science
@@ -98,15 +98,15 @@ CSC 466
 Distributed and Parallel Programming
 CSC 231
 Fall
-CSC 468
+CSC 468 
 Introduction to Cloud Computing
 CSC 231
 Spring
-CSC 471
+CSC 471 
 Modern Malware Analysis
 CSC 242
 Spring
-CSC 472
+CSC 472 
 Software Security
 CSC 242
 Fall

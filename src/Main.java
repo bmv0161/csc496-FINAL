@@ -23,7 +23,7 @@ public class Main {
 }
 class DataParser {
     Graph graph;
-    String filePath = "./src/data.txt";
+    String filePath = "./src/output.txt";
 
     public DataParser() {
         graph = new Graph();
@@ -56,6 +56,7 @@ class DataParser {
                             if (!str.equalsIgnoreCase("None")) {
                                 for (String s : str.split(",")) {
                                     s = s.replaceAll("\\s", "");
+                                    //s = s.substring(0,6);
                                     if(isCSC(s)) {
                                         course.addPrereq(s);
                                     }
