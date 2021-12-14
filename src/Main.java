@@ -36,16 +36,48 @@ class DataParser {
             Node course = new Node();
             for (int i = 0; i < 4; i++) {
                 switch (i) {
-                    case 0 -> course.setCourse(read.nextLine());
-                    case 1 -> course.setName(read.nextLine());
-                    case 2 -> course.setPrereqs(read.nextLine().split(","));
+                    case 0 -> {
+                        String str = read.nextLine();
+                        str = str.replaceAll("\\s", "");
+                        if(isCSC(str)) {
+                            course.setCourse(str);
+                        }
+                    }
+                    case 1 -> {
+                        if(!course.getCourse().equals("")) {
+                            course.setName(read.nextLine());
+                        } else {
+                            read.nextLine();
+                        }
+                    }
+                    case 2 -> {
+                        if(!course.getCourse().equals("")) {
+                            String str = read.nextLine();
+                            if (!str.equalsIgnoreCase("None")) {
+                                for (String s : str.split(",")) {
+                                    s = s.replaceAll("\\s", "");
+                                    if(isCSC(s)) {
+                                        course.addPrereq(s);
+                                    }
+                                }
+                            }
+                        } else {
+                            read.nextLine();
+                        }
+                    }
                     case 3 -> read.nextLine();
                 }
             }
-            graph.addNode(course);
+            if(!course.getCourse().equals("")) {
+                graph.addNode(course);
+            }
         }
 
         return graph;
+    }
+
+    public boolean isCSC(String str) {
+        return str.matches("CSC\\d\\d\\d");
     }
 
     public Graph getGraph(){
