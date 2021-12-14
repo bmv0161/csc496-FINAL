@@ -2,112 +2,135 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class Graph {
-    protected ArrayList<Node> nodes;
+    private ArrayList<Node> courses;
 	private Hashtable<String, Node> nodeHash;
 
 	public Graph() {
-		nodes = new ArrayList<>();
+		courses = new ArrayList<>();
 		nodeHash = new Hashtable<>();
 	}
+
 	public Graph(Graph graph) {
-		nodes = new ArrayList<>();
+		courses = new ArrayList<>();
 		nodeHash = new Hashtable<>();
 
 		for(Node x: graph.getCourses()) {
-			if(x.hasPrereqs()) {
-				this.addNode(x.getCourse(), x.getName(), x.getPrereqsString());
-			} else {
-				this.addNode(x.getCourse(), x.getName());
-			}
+			addNode(new Node(x));
 		}
 	}
 
-	public void addNode(String number, String name) {
-		Node node = new Node(number, name);
-		nodes.add(node);
-		nodeHash.put(number, node);
+	public String toStringHash() {
+		return nodeHash.toString();
 	}
-	/*
-	public void addNode(String number, String name, ArrayList<Node> prereqs) {
-		nodes.add(new Node(number, name, prereqs));
-	}
-	 */
 
-	public void addNode(String number, String name, String[] prereqs) {
-		Node node = new Node(number, name);
+	public void addNode(Node node) {
+		if(nodeHash.containsKey(node.getCourse())) {
+			nodeHash.replace(node.getCourse(), node);
+		} else {
+			nodeHash.put(node.getCourse(), node);
+		}
+	}
+	public void addNode(String course) {
+		this.addNode(new Node(course));
+	}
+	public void addNode(String course, String name) {
+		this.addNode(new Node(course, name));
+	}
+	public void addNode(String course, String name, ArrayList<String> prereqs) {
+		this.addNode(new Node(course, name, prereqs));
 		for(String x: prereqs) {
-			if(nodeHash.containsKey(x)) {
-				node.addPrereq(nodeHash.get(x));
+			if(!nodeHash.containsKey(x)) {
+				addNode(new Node(x));
 			}
 		}
-		nodes.add(node);
-		nodeHash.put(number, node);
+	}
+
+	private void setCourses() {
+		if(courses.isEmpty() && !isEmpty()) {
+			for(String x: nodeHash.keySet()) {
+				courses.add(nodeHash.get(x));
+			}
+		}
 	}
 
 	public void removeNode(Node node) {
-		for(Node x: nodes) {
-			x.removePrereq(node);
+		for(Node x: courses) {
+			x.removePrereq(node.getCourse());
 		}
-		nodes.remove(node);
+		courses.remove(node);
+		nodeHash.remove(node.getCourse());
 	}
 
+
 	public boolean isEmpty() {
-		return nodes.isEmpty();
+		return nodeHash.isEmpty();
 	}
 
 	public ArrayList<Node> getCourses() {
-		return nodes;
+		setCourses();
+		return courses;
+	}
+
+	public String toString() {
+		setCourses();
+
+		String str = "";
+		for (Node x: courses) {
+			str += String.format("%s:\t%s\n", x.getCourse(), x.getPrereqs());
+		}
+		return str;
 	}
 }
 
 
 class Node {
-	String number;
+	String course;
 	String name;
-	ArrayList<Node> prereqs;
+	ArrayList<String> prereqs;
 
+	public Node(Node node) {
+		this.course = node.getCourse();
+		this.name = node.getName();
+		this.prereqs = new ArrayList<>(node.getPrereqs());
+	}
+	public Node(String number) {
+		this.course = number;
+		this.name = "";
+		prereqs = new ArrayList<>();
+	}
 	public Node(String number, String name) {
-		this.number = number;
+		this.course = number;
 		this.name = name;
 		prereqs = new ArrayList<>();
 	}
-	public Node(String number, String name, ArrayList<Node> prereqs) {
-		this.number = number;
+	public Node(String number, String name, ArrayList<String> prereqs) {
+		this.course = number;
 		this.name = name;
 		this.prereqs = prereqs;
 	}
 
 	public String getCourse() {
-		return this.number;
+		return this.course;
 	}
 	public String getName() {
 		return this.name;
 	}
-
-	public void addPrereq(Node node) {
-		prereqs.add(node);
-	}
-	public void removePrereq(Node node) {
-		prereqs.remove(node);
-	}
-	public String[] getPrereqsString() {
-		String[] strArray = new String[prereqs.size()];
-		if(this.hasPrereqs()) {
-			for(int i = 0; i < strArray.length; i++) {
-				strArray[i] = prereqs.get(i).getCourse();
-			}
-		}
-
-		return strArray;
-	}
-	public ArrayList<Node> getPrereqs() {
+	public ArrayList<String> getPrereqs() {
 		return prereqs;
 	}
+
+	public void addPrereq(String node) {
+		prereqs.add(node);
+	}
+	public void removePrereq(String node) {
+		prereqs.remove(node);
+	}
+
 	public boolean hasPrereqs() {
 		return !prereqs.isEmpty();
 	}
 
 	public String toString() {
-		return this.number;
+		return this.course;
 	}
 }
