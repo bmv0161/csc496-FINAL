@@ -5,6 +5,8 @@
 #	       Course Title
 #	       Prerequisites
 #	       Offerings
+#	       Course Number
+#	       ...
 
 from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen
@@ -14,7 +16,7 @@ def main():
   url = 'https://www.wcupa.edu/sciences-mathematics/computerScience/undergradCourses.aspx'
 
   # urlopen makes a request to webpage at url
-  #result is an object which is saved as url_object
+  # result is an object which is saved as url_object
   url_object = urlopen(url)
 
   # the raw html from the webpage is saved in page_html
@@ -24,7 +26,7 @@ def main():
   soup_html = soup(page_html, 'html.parser')
 
   # creates txt file for later writing
-  # write_file = open("courses.txt", "w")
+  write_file = open("courses.txt", "w")
 
   # # all rows in every table on page (all_rows[0] contains column headers)
   # all_rows = soup_html.find_all('tr')
@@ -39,15 +41,22 @@ def main():
       if cell.find('p'):
         # print none if cell is empty, otherwise print contents
         if cell.find('p').string == '\xa0':
-          print('None')
+          write_file.write('None' + '\n')
         else:
-          print(cell.find('p').string)
+          # handles cases where cell is empty
+          if cell.find('p').string is None:
+            write_file.write('None' + '\n')
+          else:
+            write_file.write(cell.find('p').string + '\n')
       # if no p tag exists for cell, print out contents of cell directly
       else:
         if cell.string == '\xa0':
-          print('None')
+          write_file.write('None' + '\n')
         else:
-          print(cell.string)
+          write_file.write(cell.string + '\n')
+
+  # finally, closes file safely
+  write_file.close()
 
 if __name__ == "__main__":
   main()
