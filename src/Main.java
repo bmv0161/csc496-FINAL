@@ -1,12 +1,14 @@
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
 import java.util.Arrays;
+import java.io.File;
+import java.util.Scanner;
+import java.io.IOException;
 
 public class Main {
-    public static void main(String args[]) {
-        Graph graph = new Graph();
-        createGraph(graph);
-
+    public static void main(String args[]){
+        Graph graph = new DataParser().getGraph();
+        System.out.println(graph);
         new ClassScheduler(new Graph(graph)).planGraduation();
     }
 
@@ -18,6 +20,46 @@ public class Main {
         graph.addNode("MAT 151", "Introduction to Discrete Mathematics");
         graph.addNode("CSC 990", "heck music", new ArrayList<String>(Arrays.asList("CSC 141", "CSC 299")));
     }
+}
+class DataParser {
+    Graph graph;
+    String filePath = "./src/data.txt";
+
+    public DataParser() {
+        graph = new Graph();
+    }
+
+    private Graph parseData() throws IOException{
+        Scanner read = new Scanner(new File(filePath));
+
+        while(read.hasNext()) {
+            Node course = new Node();
+            for (int i = 0; i < 4; i++) {
+                switch (i) {
+                    case 0 -> course.setCourse(read.nextLine());
+                    case 1 -> course.setName(read.nextLine());
+                    case 2 -> course.setPrereqs(read.nextLine().split(","));
+                    case 3 -> read.nextLine();
+                }
+            }
+            graph.addNode(course);
+        }
+
+        return graph;
+    }
+
+    public Graph getGraph(){
+        if(graph.isEmpty()) {
+            try {
+                parseData();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return graph;
+    }
+}
+
 /*
     public static void createGraph2(Graph graph) {
         graph.addNode("MAT 151", "Introduction to Discrete Mathematics");
@@ -55,4 +97,3 @@ public class Main {
         graph.addNode("CSC 499", "Independent Study in Computer Science", new ArrayList<Node>(Arrays.asList(graph.nodes.get(7))));
     }
     */
-}

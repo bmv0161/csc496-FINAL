@@ -1,0 +1,8 @@
+CSC 141
+Computer Science I
+MAT 121,MAT 141
+SPRING, FALL
+CSC 241
+Computer Science II
+CSC 141
+SPRING, FALL
