@@ -1,0 +1,168 @@
+CSC 110
+Fundamentals in Computer Science
+None
+Spring, Fall
+None
+Programming & Data Science
+None
+Spring, Summer, Fall
+CSC 115
+Introduction to Computer Programming
+None
+Spring, Fall
+CSC 116
+Gen Ed Science
+None
+Spring, Fall
+CSC 141
+Computer Science I
+None
+Spring, Summer, Fall
+CSC 142
+Computer Science II
+CSC 141 
+Spring, Summer, Fall
+CSC 220
+Foundations of Computer Science
+MAT 151, MAT 161
+Spring, Fall
+CSC 231
+Computer Systems
+CSC 142
+Spring, Fall
+CSC 240
+Computer Science III
+CSC 142
+Spring, Fall
+CSC 241
+Data Structures and Algorithms
+CSC 240, MAT 151, MAT 161 
+Spring, Fall
+CSC 242
+Computer Organization
+CSC 142, MAT 151
+None
+CSC 301
+Computer Security & Ethics
+Three CSC, CST, or CSW courses 
+Spring, Fall
+CSC 302
+Computer Security
+CSC 301, CSC 335 
+Spring, Fall
+CSC 317
+Introduction to Digital Image Processing
+CSC240, MAT151, MAT161 
+Spring, Fall
+CSC 321
+Database Management Systems
+CSC 241
+Spring, Fall
+CSC 331
+Operating Systems
+CSC 220, CSC 240, CSC 241
+Fall
+CSC 335
+Data Communications and Networking I
+ CSC 240, CSC 241
+Spring, Summer, Fall
+CSC 336
+Data Communications and Networking II
+CSC 335
+None
+CSC 345
+Programming Language Concepts and Paradigms
+CSC 220, CSC 241 
+Spring, Fall
+CSC 400
+Internship
+CSC 240, CSC 241
+Spring, Summer, Fall, Winter
+CSC 402
+Software Engineering
+CSC 241
+Spring, Fall
+CSC 404
+Software Engineering & Testing
+CSC 240, CSC 241
+Spring, Fall
+CSC 416
+Design and Construction of Compilers
+CSC 220, CSC 240, CSC 241
+Fall odd years
+CSC 417
+User Interfaces
+CSC 241
+Spring
+CSC 466
+Distributed and Parallel Programming
+CSC 231
+Fall
+CSC 468 
+Introduction to Cloud Computing
+CSC 231
+Spring
+CSC 471 
+Modern Malware Analysis
+CSC 242
+Spring
+CSC 472 
+Software Security
+CSC 242
+Fall
+CSC 476
+Game Development
+CSC 241
+Fall even years
+CSC 481
+Artificial Intelligence
+CSC 241 
+Spring
+CSC 490
+Independent Project
+CSC 220, CSC 241 
+Spring, Summer, Fall, Winter
+CSC 495
+Topics in Computer Science
+CSC 241
+Summer
+CSC 496
+Topics in Complex Systems
+CSC 241 
+Spring, Summer, Fall, Winter
+CSC 497
+Topics in Computer Security
+CSC 241 
+None
+CSC 499
+Independent Study in Computer Science
+CSC 241 
+Spring, Summer, Fall, Winter
+CST 211
+Security and Ethics in IT
+None
+None
+CST 221
+Database Systems
+None
+Fall
+CST 235
+Network and System Administration
+None
+Spring
+CSW 101
+Introduction to Computers
+None
+None
+CSW 116
+Computer Programming Laboratory
+None
+None
+CSW 131
+Introduction to Web Design
+None
+Spring, Fall
+CSW 315
+Introduction to Web Programming
+CSW 131, CSC 115
+Spring

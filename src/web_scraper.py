@@ -1,7 +1,15 @@
+# Author(s): Shaun Derstine
+# Last Edit: 12/13/2021
+# Description: This script writes all WCUPA CSC courses to 'courses.txt' in this format...
+#	       Course Number
+#	       Course Title
+#	       Prerequisites
+#	       Offerings
+
 from bs4 import BeautifulSoup as soup
 from urllib.request import urlopen
 
-
+def main():
   # url is saved as a string
   url = 'https://www.wcupa.edu/sciences-mathematics/computerScience/undergradCourses.aspx'
 
@@ -15,31 +23,31 @@ from urllib.request import urlopen
   # converts raw html to BeautifulSoup object 'soup_html'
   soup_html = soup(page_html, 'html.parser')
 
-  # FIRST VERSION: ROUGH PROTOTYPE
-  # ------------------------------
-  # # finds first four table headers and stores them in list
-  # first_four_table_headers = soup_html.find_all('th', limit=4)
-  # 
-  # # finds the first row (after first four table headers)
-  # next_row = first_four_table_headers[ len(first_four_table_headers) - 1 ].find_next('tr')
-  # 
-  # # all content within row (between <tr> and </tr>)
-  # next_row_contents = next_row.contents
-  # 
-  # # makes a list of all cells in row
-  # cells = next_row_contents.find_all('td')
-  # 
-  # # prints contents of each cell in row
-  # for cell in cells:
-  #   print(cell.find('p').string)
-
-  # VERSION TWO: ITERATIVE, INCLUDES ALL ROWS (NOT JUST CSC)
-  # --------------------------------------------------------
+  # creates txt file for later writing
+  # write_file = open("courses.txt", "w")
 
   # # all rows in every table on page (all_rows[0] contains column headers)
   # all_rows = soup_html.find_all('tr')
 
+  # column headers
+  headers = soup_html.find('tr')
+
   # loops through every row and prints contents of each individual cell
-  for row in soup_html.find_all('tr'):
+  for row in headers.find_all_next('tr'):
     for cell in row.find_all('td'):
-      print(cell)
+      # check if p tag exists in cell because of poor formatting of website
+      if cell.find('p'):
+        # print none if cell is empty, otherwise print contents
+        if cell.find('p').string == '\xa0':
+          print('None')
+        else:
+          print(cell.find('p').string)
+      # if no p tag exists for cell, print out contents of cell directly
+      else:
+        if cell.string == '\xa0':
+          print('None')
+        else:
+          print(cell.string)
+
+if __name__ == "__main__":
+  main()
