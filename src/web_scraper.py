@@ -42,6 +42,9 @@ def main():
         # print none if cell is empty, otherwise print contents
         if cell.find('p').string == '\xa0':
           write_file.write('None' + '\n')
+        # handles single case where formatting is funky
+        elif cell.find('p').string is None:
+          write_file.write(cell.find('p').find('a').string + '\n')
         else:
           # handles cases where cell is empty
           if cell.find('p').string is None:
