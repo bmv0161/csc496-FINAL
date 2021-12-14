@@ -2,7 +2,7 @@ CSC 110
 Fundamentals in Computer Science
 None
 Spring, Fall
-None
+CSC 112
 Programming & Data Science
 None
 Spring, Summer, Fall
