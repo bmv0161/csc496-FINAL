@@ -3,6 +3,8 @@
 /.idea/workspace.xml
 *.xml
 *.iml
+/out/
+/.idea/
 
 # compiled files
 *.class
