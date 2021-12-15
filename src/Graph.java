@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-//Graph
+//Stores list of courses in Hashtable and outputs them as unordered Arraylist of Nodes
 public class Graph {
     private ArrayList<Node> courses;
 	private Hashtable<String, Node> nodeHash;
@@ -20,7 +20,9 @@ public class Graph {
 		}
 	}
 
+	//Adds node to Hashtable
 	public void addNode(Node node) {
+		//replace if incomplete entry exists else put Node in hashtable
 		if(nodeHash.containsKey(node.getCourse())) {
 			nodeHash.replace(node.getCourse(), node);
 		} else {
@@ -31,6 +33,7 @@ public class Graph {
 		}
 		update = false;
 	}
+	//Overloading addNode
 	public void addNode(String course) {
 		this.addNode(new Node(course));
 	}
@@ -41,6 +44,7 @@ public class Graph {
 		this.addNode(new Node(course, name, prereqs));
 		checkPrereqs(prereqs);
 	}
+	//used by addNode methods to add Prerequisite nodes if not already in table
 	private void checkPrereqs(ArrayList<String> prereqs) {
 		for(String x: prereqs) {
 			if(!nodeHash.containsKey(x)) {
@@ -48,7 +52,7 @@ public class Graph {
 			}
 		}
 	}
-
+	//sets Arraylist of courses if not in sync with HashTable and returns Arraylist
 	public ArrayList<Node> getCourses() {
 		if(!update && !isEmpty()) {
 			for(String x: nodeHash.keySet()) {
@@ -59,14 +63,16 @@ public class Graph {
 		return courses;
 	}
 
+	//removes node from each prerequisite list and hashtable
 	public void removeNode(Node node) {
+		getCourses();
 		for(Node x: courses) {
 			x.removePrereq(node.getCourse());
 		}
 		courses.remove(node);
 		nodeHash.remove(node.getCourse());
 	}
-
+	//return given node from graph
 	public Node getNode(String str) {
 		return nodeHash.get(str);
 	}
@@ -74,22 +80,24 @@ public class Graph {
 		return nodeHash.get(node.getCourse());
 	}
 
+	//checks if given node is a prereq to any other node in the graph
 	public boolean isPrereq(Node node) {
-		boolean flag = false;
 		for(String str: nodeHash.keySet()) {
 			if(getNode(str).hasPrereq(node.getCourse())) {
-				flag = true;
+				return true;
 			}
 		}
-		return flag;
+		return false;
 	}
 	public boolean isPrereq(String str) {
 		return isPrereq(getNode(str));
 	}
+	//checks if hashtable is empty
 	public boolean isEmpty() {
 		return nodeHash.isEmpty();
 	}
 
+	//Prints out course number and prereqs
 	public String toString() {
 		if(!update) { getCourses(); }
 
@@ -101,12 +109,13 @@ public class Graph {
 	}
 }
 
-
+//Stores Course info and Prerequisites
 class Node {
 	String course;
 	String name;
 	ArrayList<String> prereqs;
 
+	//Overloading constructors
 	public Node() {
 		course = "";
 		name = "";
@@ -139,6 +148,7 @@ class Node {
 		this.prereqs = prereqs;
 	}
 
+	//getter methods
 	public String getCourse() {
 		return this.course;
 	}
@@ -149,6 +159,7 @@ class Node {
 		return prereqs;
 	}
 
+	//setter methods
 	public void setCourse(String course) {
 		this.course = course;
 	}
@@ -161,19 +172,23 @@ class Node {
 		}
 	}
 
+	//prerequisite handling
 	public void addPrereq(String node) {
 		prereqs.add(node);
 	}
 	public void removePrereq(String node) {
 		prereqs.remove(node);
 	}
+	//checks if course has prerequisites
 	public boolean hasPrereqs() {
 		return !prereqs.isEmpty();
 	}
+	//checks if course has given prerequisite course
 	public boolean hasPrereq(String str) {
 		return prereqs.contains(str);
 	}
 
+	//returns course number
 	public String toString() {
 		return String.format("%s", course);
 	}

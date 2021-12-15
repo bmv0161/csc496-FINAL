@@ -5,20 +5,51 @@ import java.io.File;
 import java.util.Scanner;
 import java.io.IOException;
 
+//Creates Graph from DataParser and outputs graduation plan from ClassSchedulerCap semester by semester
 public class Main {
     public static void main(String args[]){
         Graph graph = new DataParser().getGraph();
-
         Graph copy = new Graph(graph);
+        Graph copy2 = new Graph(graph);
 
+        printAlgorithm("base topology sorter",
+                new ClassSchedulerBase(new Graph(graph)), new ClassSchedulerBase(new Graph(graph)));
+        printAlgorithm("topology sorter with cap",
+                new ClassSchedulerCap(new Graph(graph)), new ClassSchedulerCap(new Graph(graph)));
 
-        for(int i = 1; !copy.isEmpty(); i++) {
-            System.out.println(copy);
+        /*
+        System.out.println("~~~   BASE TOPOLOGY SORT   ~~~");
+        new ClassSchedulerBase(new Graph(graph)).planGraduation();
+        System.out.println();
+        stepThroughGraduationPlan(copy, new ClassSchedulerBase(copy));
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~   TOPOLOGY SORT WITH CAP   ~~~");
+        new ClassSchedulerCap(new Graph(graph)).planGraduation();
+        System.out.println();
+        stepThroughGraduationPlan(copy2, new ClassSchedulerCap(copy2));
+
+         */
+    }
+    public static void printAlgorithm(String title, ClassScheduler scheduler, ClassScheduler copy) {
+        System.out.printf("~~~   %s   ~~~\n\n", title.toUpperCase());
+        scheduler.planGraduation();
+        System.out.println();
+        stepThroughGraduationPlan(copy);
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    }
+
+    public static void stepThroughGraduationPlan(ClassScheduler scheduler) {
+        Graph graph = scheduler.getGraph();
+        for(int i = 1; !graph.isEmpty(); i++) {
+            System.out.println(graph);
             System.out.printf("Semester %d:\t%s\n\n",
-                    i, new ClassSchedulerCap(copy).planSemester());
+                    i, scheduler.planSemester());
         }
     }
 }
+
+
+//creates Graph object based on output from web_scraper.py
 class DataParser {
     Graph graph;
     String filePath = "./src/courses.txt";
