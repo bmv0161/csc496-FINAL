@@ -8,17 +8,13 @@ import java.io.IOException;
 public class Main {
     public static void main(String args[]){
         Graph graph = new DataParser().getGraph();
-        System.out.println(graph);
-        new ClassScheduler(new Graph(graph)).planGraduation();
-    }
 
-    public static void createGraph(Graph graph) {
-        graph.addNode("CSC 142", "Computer Science II", new ArrayList<String>(Arrays.asList("MAT 161", "CSC 141")));
-        graph.addNode("MAT 161", "Calculus I", new ArrayList<String>(Arrays.asList("MAT 151")));
-        graph.addNode("CSC 141", "Computer Science I", new ArrayList<String>(Arrays.asList("MAT 151", "MAT 161")));
-        graph.addNode("CSC 220", "Foundations of Computer Science", new ArrayList<String>(Arrays.asList("CSC 142", "CSC 990")));
-        graph.addNode("MAT 151", "Introduction to Discrete Mathematics");
-        graph.addNode("CSC 990", "heck music", new ArrayList<String>(Arrays.asList("CSC 141", "CSC 299")));
+        Graph copy = new Graph(graph);
+        for(int i = 0; !copy.isEmpty(); i++) {
+            System.out.println(copy);
+            System.out.printf("Semester %d:\t%s\n\n",
+                    i, new ClassScheduler(copy).planSemester());
+        }
     }
 }
 class DataParser {
