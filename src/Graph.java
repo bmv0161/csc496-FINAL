@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Hashtable;
 
+//Graph
 public class Graph {
     private ArrayList<Node> courses;
 	private Hashtable<String, Node> nodeHash;
@@ -66,6 +67,25 @@ public class Graph {
 		nodeHash.remove(node.getCourse());
 	}
 
+	public Node getNode(String str) {
+		return nodeHash.get(str);
+	}
+	public Node getNode(Node node) {
+		return nodeHash.get(node.getCourse());
+	}
+
+	public boolean isPrereq(Node node) {
+		boolean flag = false;
+		for(String str: nodeHash.keySet()) {
+			if(getNode(str).hasPrereq(node.getCourse())) {
+				flag = true;
+			}
+		}
+		return flag;
+	}
+	public boolean isPrereq(String str) {
+		return isPrereq(getNode(str));
+	}
 	public boolean isEmpty() {
 		return nodeHash.isEmpty();
 	}
@@ -149,6 +169,9 @@ class Node {
 	}
 	public boolean hasPrereqs() {
 		return !prereqs.isEmpty();
+	}
+	public boolean hasPrereq(String str) {
+		return prereqs.contains(str);
 	}
 
 	public String toString() {

@@ -10,10 +10,12 @@ public class Main {
         Graph graph = new DataParser().getGraph();
 
         Graph copy = new Graph(graph);
-        for(int i = 0; !copy.isEmpty(); i++) {
+
+
+        for(int i = 1; !copy.isEmpty(); i++) {
             System.out.println(copy);
             System.out.printf("Semester %d:\t%s\n\n",
-                    i, new ClassScheduler(copy).planSemester());
+                    i, new ClassSchedulerCap(copy).planSemester());
         }
     }
 }
