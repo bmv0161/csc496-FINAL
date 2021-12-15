@@ -14,6 +14,8 @@ public class FinalProjectApplication {
 
     @GetMapping("/plan")
     public String sayHello() {
-        return String.format(Main.run());
+		String output = Main.run();
+		String html = output.replaceAll("(\r\n|\n)", "<br>");
+        return html;
     }
 }
