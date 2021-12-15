@@ -4,11 +4,13 @@ import java.util.Arrays;
 import java.io.File;
 import java.util.Scanner;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 
 public class Main {
     public static String run(){
         Graph graph = new DataParser().getGraph();
-        System.out.println(graph);
         return new ClassScheduler(new Graph(graph)).planGraduation();
     }
 
@@ -22,7 +24,7 @@ public class Main {
 }
 class DataParser {
     Graph graph;
-    String filePath = "D:\\Program Files (x86)\\Microsoft VS Code\\Projects\\WCUPA\\CSC496\\csc496-FINAL\\src\\web demo\\src\\main\\java\\com\\CSC496\\demo\\courses.txt";
+    String filePath = Path.of("").toAbsolutePath().toString() + "/src/main/java/com/CSC496/demo/courses.txt";
 
 	public DataParser() {
         graph = new Graph();
