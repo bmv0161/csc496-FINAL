@@ -10,8 +10,11 @@
 4. Bonus points
 
 **File Structure**
-1. Graph.java: reads raw data and stores directed graph data structure - **Devin**
-2. ClassScheduler.java: performs topology sort and outputs four year plan - **Brian**
+1. Graph.java: stores directed graph data structure
+2. ClassScheduler.java: can perform topology sort to output graduation plan
+3. Main.java: contains project driver -> Creates Graph from courses.txt and prints algorithms
+4. web_scraper.py: parses html of course catalog with Beautiful soup and pipes data to courses.txt
+5. courses.txt: stores output from web_scraper.py
 
 **Roles**
 
@@ -30,8 +33,7 @@ Shared
 **Bonus**
 1. Rewrite the algorithm with a cap of three courses per semester: find the fastest graduation path
 2. Build an interactive Web/GUI application to display the algorithm
-3. Rewrite the algorithm to fill out the CSC advising sheet: find the fastest graduation path (least amount of semesters
-)
+3. Rewrite the algorithm to fill out the CSC advising sheet: find the fastest graduation path (least amount of semesters)
 
 
 
