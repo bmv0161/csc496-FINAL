@@ -10,22 +10,25 @@
 4. Bonus points
 
 **File Structure**
-1. Graph.java: reads raw data and stores directed graph data structure - **Devin**
-2. ClassScheduler.java: performs topology sort and outputs four year plan - **Brian**
+- web_scraper.py: reads data from site and outputs to a text file for later reading
+- Graph.java: structure for creating graph from output of web_scraper.py
+- ClassScheduler.java: contains algorithms for topology sort
+- Main.java: contains main method to output final product
 
 **Roles**
 
 Devin
 - Graph.java
+- Bonus 2
 
 Brian
+- Main.java
 - ClassScheduler.java
+- Bonus 1
 
 Shaun
+- web_scraper.py
 - Video
-
-Shared
-- Bonuses
 
 **Bonus**
 1. Rewrite the algorithm with a cap of three courses per semester: find the fastest graduation path
