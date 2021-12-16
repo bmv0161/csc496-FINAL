@@ -19,7 +19,7 @@ public class Main {
 }
 class DataParser {
     Graph graph;
-    String filePath = "./src/courses.txt";
+    String filePath = "./courses.txt";
 
     public DataParser() {
         graph = new Graph();
