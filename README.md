@@ -20,15 +20,16 @@
 
 Devin
 - Graph.java
+- Bonus 2
 
 Brian
+- Main.java
 - ClassScheduler.java
+- Bonus 1
 
 Shaun
+- web_scraper.py
 - Video
-
-Shared
-- Bonuses
 
 **Bonus**
 1. Rewrite the algorithm with a cap of three courses per semester: find the fastest graduation path
